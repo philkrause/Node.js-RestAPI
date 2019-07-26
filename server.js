@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const Bear = require('./models/bear')
 
 const uri =
-  'mongodb://krausefire@gmail.com:Prod!y.123@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
+  'mongodb://krausefire@gmail.com:PW@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
 
 mongoose.connect(uri)
 
