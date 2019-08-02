@@ -6,11 +6,10 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Bear = require('./models/bear')
 
-const uri =
-  'mongodb://krausefire@gmail.com:Prod!y.123@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
-
-mongoose.connect(uri)
-
+const uri = mongoose.connect(
+  'mongodb+srv://user:pillow123@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
+)
+//mongodb:myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017,mongodb1.example.com:27017,mongodb2.example.com:27017/test?replicaSet=myRepl&authSource=admin
 const port = process.env.PORT || 8080
 
 //Setup Routes
