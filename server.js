@@ -33,6 +33,7 @@ router.use((req, res, next) => {
 //Bear Routes
 router
   .route('/bears')
+
   .post((req, res) => {
     const bear = new Bear()
     bear.name = req.body.name
@@ -48,6 +49,17 @@ router
     Bear.find((err, bears) => {
       if (err) {
         res.send(err)
+      } else {
+        res.json(bears)
+      }
+    })
+  })
+
+  //Delete All Bears
+  .delete((req, res) => {
+    Bear.remove((err, bears) => {
+      if (!err) {
+        res.json({ message: 'all bears deleted' })
       } else {
         res.json(bears)
       }
@@ -80,6 +92,16 @@ router
             res.json({ message: 'Bear was Updated' })
           }
         })
+      }
+    })
+  })
+
+  .delete((req, res) => {
+    Bear.remove({ _id: req.params.bear_id }, (err, bear) => {
+      if (err) {
+        res.send(err)
+      } else {
+        res.json({ message: 'Bear was deleted' })
       }
     })
   })
