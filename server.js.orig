@@ -7,7 +7,11 @@ const mongoose = require('mongoose')
 const Bear = require('./models/bear')
 
 const uri =
+<<<<<<< HEAD
   'mongodb+srv://user:pillow123@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
+=======
+  'mongodb://krausefire@gmail.com:PW@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
+>>>>>>> dd38bfa1325de17d9d3ec7c6d81a9e05d9ef83f0
 
 mongoose.connect(uri, { useNewUrlParser: true })
 
