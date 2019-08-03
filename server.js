@@ -54,15 +54,36 @@ router
     })
   })
 
-router.route('/bears/:bears_id').get((req, res) => {
-  Bear.findById(req.params.bear_id, (err, bear) => {
-    if (err) {
-      res.send(err)
-    } else {
-      res.json(bear)
-    }
+router
+  .route('/bears/:bear_id')
+
+  .get((req, res) => {
+    Bear.findById(req.params.bear_id, (err, bear) => {
+      if (err) {
+        res.send(err)
+      } else {
+        res.json(bear)
+      }
+    })
   })
-})
+
+  .put((req, res) => {
+    Bear.findById(req.params.bear_id, (err, bear) => {
+      if (err) {
+        res.send(err)
+      } else {
+        bear.name = req.body.name
+        bear.save(err => {
+          if (err) {
+            res.send(err)
+          } else {
+            res.json({ message: 'Bear was Updated' })
+          }
+        })
+      }
+    })
+  })
+
 //Register our Routes
 //all of our routes will be prefixed with /api
 app.use('/api', router)
