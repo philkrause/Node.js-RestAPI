@@ -6,10 +6,11 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Bear = require('./models/bear')
 
-const uri = mongoose.connect(
+const uri =
   'mongodb+srv://user:pillow123@cluster0-45nfb.mongodb.net/test?retryWrites=true&w=majority'
-)
-//mongodb:myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017,mongodb1.example.com:27017,mongodb2.example.com:27017/test?replicaSet=myRepl&authSource=admin
+
+mongoose.connect(uri, { useNewUrlParser: true })
+
 const port = process.env.PORT || 8080
 
 //Setup Routes
@@ -32,7 +33,6 @@ router.use((req, res, next) => {
 //Bear Routes
 router
   .route('/bears')
-
   .post((req, res) => {
     const bear = new Bear()
     bear.name = req.body.name
@@ -44,7 +44,25 @@ router
       }
     })
   })
+  .get((req, res) => {
+    Bear.find((err, bears) => {
+      if (err) {
+        res.send(err)
+      } else {
+        res.json(bears)
+      }
+    })
+  })
 
+router.route('/bears/:bears_id').get((req, res) => {
+  Bear.findById(req.params.bear_id, (err, bear) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(bear)
+    }
+  })
+})
 //Register our Routes
 //all of our routes will be prefixed with /api
 app.use('/api', router)
